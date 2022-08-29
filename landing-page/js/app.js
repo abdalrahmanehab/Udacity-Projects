@@ -45,3 +45,23 @@ function BoundingClientRect() {
 };
 // add the event of scrolling and calling it the page by addEventListener
 document.addEventListener("scroll" , BoundingClientRect)
+
+
+
+function linksActive () {
+    for (let section of mySections) {
+    const sectionDim = section.getBoundingClientRect();
+    let sectionTitle = section.getAttribute("data-nav");
+    const links = document.querySelectorAll("li");
+    if (sectionDim.top >= 0 && sectionDim.top < 300) {
+        for (let link of links) {
+        link.classList.remove("section-is-active");
+        if (link.textContent === sectionTitle) {
+            link.classList.add("section-is-active");
+        }
+        }
+    }
+    }
+};
+
+document.addEventListener("scroll" , linksActive)
