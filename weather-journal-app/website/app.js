@@ -1,7 +1,4 @@
 /* Global Variables */
-
-const { response } = require("express");
-
 // Personal API Key for OpenWeatherMap API
 const apiKeyName = "&appid=72e152aafefca55befb98461cb2ec0e5&units=imperial";
 const apiLink ="";
@@ -25,16 +22,18 @@ function generateFunc(){
         content: feelingsElement.value,
         date: new Date()
     };
+
+    getZipInfo(data.zipCode).then(zipInfo => {
+        if(zipInfo.cod != 200) 
+            return alert (zipInfo.message)
+    
+            data.temp = zipInfo.list[0].main.temp;
+            postDateToServer(data);
+    
+    }).catch(catchError);
 }
 
-getZipInfo(data.zipCode).then(zipInfo => {
-    if(zipInfo.cod != 200) 
-        return alert (zipInfo.message)
 
-        data.temp = zipInfo.list[0].main.temp;
-        postDateToServer(data);
-
-}).catch(catchError);
 
 //get zip code info 
 async function getZipInfo(zipCode) {

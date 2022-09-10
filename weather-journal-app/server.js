@@ -3,7 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path')
 // port 
-const port = 8400;
+const port = 3000;
 
 
 
@@ -23,7 +23,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 // Initialize the main project folder
-app.use(express.static(path.join(__dirname,'.','/website')));
+app.use(express.static(path.join(__dirname,'.','website')));
 
 
 // Setup Server
